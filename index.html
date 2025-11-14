@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plato Shop Total Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+ <div class="container">
+        <h1>Plato Shop Total Cost Calculator</h1>
+
+        <label for="bread">Quantity of Bread (3,000 UGX each):</label>
+        <input type="number" id="bread" placeholder="Enter quantity">
+
+        <label for="milk">Quantity of Milk (2,500 UGX each):</label>
+        <input type="number" id="milk" placeholder="Enter quantity">
+
+        <label for="eggs">Quantity of Eggs (500 UGX each):</label>
+        <input type="number" id="eggs" placeholder="Enter quantity">
+
+        <button onclick="calculateTotal()">Calculate Total</button>
+
+        <h2 id="result"></h2>
+    </div>
+
+    <script>
+        function calculateTotal() {
+            let bread = document.getElementById("bread").value;
+            let milk = document.getElementById("milk").value;
+            let eggs = document.getElementById("eggs").value;
+
+            if (bread === "" || milk === "" || eggs === "") {
+                document.getElementById("result").innerHTML = "❗ Please fill in all fields.";
+                return;
+            }
+
+            if (bread < 0 || milk < 0 || eggs < 0) {
+                document.getElementById("result").innerHTML = "❗ Quantities cannot be negative.";
+                return;
+            }
+
+            if (isNaN(bread) || isNaN(milk) || isNaN(eggs)) {
+                document.getElementById("result").innerHTML = "❗ Please enter valid numbers.";
+                return;
+            }
+
+            bread = Number(bread);
+            milk = Number(milk);
+            eggs = Number(eggs);
+
+            const breadPrice = 3000;
+            const milkPrice = 2500;
+            const eggPrice = 500;
+
+            const total = bread * breadPrice + milk * milkPrice + eggs * eggPrice;
+
+            document.getElementById("result").innerHTML =
+                "💰 Total Amount: <strong>" + total.toLocaleString() + " UGX</strong>";
+        }
+    </script>
+</body>
+</html>
